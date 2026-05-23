@@ -134,7 +134,41 @@ export default function AgentPortal() {
           </Card>
         </div>
 
-        <Card className="border-0 shadow-sm overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+          {[
+            {
+              title: "Appointments",
+              text: "Review pending calls, follow-up requests, and next steps.",
+              href: "#appointments",
+            },
+            {
+              title: "CRM Inbox",
+              text: "Open the full lead inbox for admin-level contact records.",
+              href: "/crm",
+            },
+            {
+              title: "Access Help",
+              text: "Request agent permissions or portal support.",
+              href: "/contact",
+            },
+            {
+              title: "Recruiting",
+              text: "Agent onboarding and team growth resources.",
+              href: "/join-our-team",
+            },
+          ].map((item) => (
+            <Card key={item.title} className="p-5 border-0 shadow-sm bg-white">
+              <p className="text-sm font-semibold uppercase tracking-wide text-blue-600 mb-2">CRM section</p>
+              <h2 className="text-lg font-semibold mb-2">{item.title}</h2>
+              <p className="text-sm text-slate-600 mb-4">{item.text}</p>
+              <Button asChild variant="outline" className="w-full">
+                <a href={item.href}>Open</a>
+              </Button>
+            </Card>
+          ))}
+        </div>
+
+        <Card id="appointments" className="border-0 shadow-sm overflow-hidden">
           <div className="p-5 border-b bg-white flex items-center justify-between gap-4">
             <div>
               <h2 className="text-xl font-semibold">Pending appointments</h2>
