@@ -11,7 +11,7 @@ export default function About() {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-4">About WEDOIT Insurance</h1>
           <p className="text-xl text-slate-200 max-w-2xl mx-auto">
-            Helping families and professionals protect what matters most.
+            Helping middle class families, millennials, nurses, doctors, transporters, and future agents protect what matters most.
           </p>
         </div>
       </section>
@@ -23,13 +23,13 @@ export default function About() {
             <h2 className="text-4xl font-bold mb-8">Our Story</h2>
             <div className="space-y-6 text-lg text-slate-700 leading-relaxed">
               <p>
-                WEDOIT Insurance was founded on a simple belief: families deserve clear, honest guidance when it comes to protecting their financial future. Too often, people feel confused or pressured when shopping for life insurance. We wanted to change that.
+                WEDOIT Insurance was founded on a simple belief: families deserve clear, honest guidance when it comes to protecting their financial future. Too often, people feel confused or pressured when shopping for life insurance. We wanted to change that by making the process simple and human.
               </p>
               <p>
-                With over 15 years of combined experience in life insurance and financial planning, our team has helped hundreds of families find coverage that fits their lives and budgets. We work as independent brokers, which means we're not tied to any single insurance company. We work for you.
+                With over 15 years of combined experience in life insurance and financial planning, our team helps people find coverage that fits real lives and real budgets. We work as independent brokers, which means we're not tied to any single insurance company. We work for you.
               </p>
               <p>
-                Our mission is simple: educate first, then help you choose coverage with confidence. No pressure. No hidden agendas. Just honest, expert guidance.
+                Our mission is simple: educate first, then help you choose coverage with confidence. No pressure. No hidden agendas. Just honest, expert guidance for families and the people who support them.
               </p>
             </div>
           </div>
@@ -85,6 +85,9 @@ export default function About() {
                 </p>
                 <p>
                   <span className="font-semibold">Licensing:</span> Our advisors are licensed to sell life insurance in all 50 states. License information is available upon request.
+                </p>
+                <p>
+                  <span className="font-semibold">Audience:</span> We focus on families, working professionals, and people carrying responsibility for others.
                 </p>
               </div>
             </Card>
@@ -153,14 +156,14 @@ export default function About() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">Let's Protect Your Family</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Schedule a free consultation with one of our licensed advisors.
+            Schedule a conversation with one of our licensed advisors and get clear next steps.
           </p>
           <Button
             size="lg"
             className="bg-white text-blue-600 hover:bg-slate-100 px-8 py-6 text-lg font-semibold"
             asChild
           >
-            <Link href="/contact">Book a Free Policy Review</Link>
+            <Link href="/contact">Schedule a Call</Link>
           </Button>
         </div>
       </section>

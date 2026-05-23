@@ -1,9 +1,32 @@
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { InsertUser, users, quoteRequests, contactSubmissions } from "../drizzle/schema";
 import { ENV } from './_core/env';
+import fs from "node:fs/promises";
+import path from "node:path";
 
 let _db: ReturnType<typeof drizzle> | null = null;
+const LEAD_FALLBACK_PATH = path.resolve(process.cwd(), "state", "lead-submissions.json");
+
+async function appendLeadFallback(entry: Record<string, unknown>) {
+  await fs.mkdir(path.dirname(LEAD_FALLBACK_PATH), { recursive: true });
+
+  let existing: Record<string, unknown>[] = [];
+  try {
+    const raw = await fs.readFile(LEAD_FALLBACK_PATH, "utf8");
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed)) existing = parsed;
+  } catch {
+    existing = [];
+  }
+
+  existing.push({
+    ...entry,
+    createdAt: new Date().toISOString(),
+  });
+
+  await fs.writeFile(LEAD_FALLBACK_PATH, JSON.stringify(existing, null, 2), "utf8");
+}
 
 // Lazily create the drizzle instance so local tooling can run without a DB.
 export async function getDb() {
@@ -100,7 +123,8 @@ export async function createQuoteRequest(data: {
 }) {
   const db = await getDb();
   if (!db) {
-    throw new Error("Database not available");
+    await appendLeadFallback({ type: "quote_request", ...data });
+    return { success: true, storedLocally: true };
   }
 
   await db.insert(quoteRequests).values(data);
@@ -116,11 +140,46 @@ export async function createContactSubmission(data: {
 }) {
   const db = await getDb();
   if (!db) {
-    throw new Error("Database not available");
+    await appendLeadFallback({ type: "contact_submission", ...data });
+    return { success: true, storedLocally: true };
   }
 
   const result = await db.insert(contactSubmissions).values(data);
   return result;
+}
+
+export async function getQuoteRequests() {
+  const db = await getDb();
+  if (!db) {
+    try {
+      const raw = await fs.readFile(LEAD_FALLBACK_PATH, "utf8");
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed)
+        ? parsed.filter(entry => entry.type === "quote_request")
+        : [];
+    } catch {
+      return [];
+    }
+  }
+
+  return db.select().from(quoteRequests).orderBy(desc(quoteRequests.createdAt));
+}
+
+export async function getContactSubmissions() {
+  const db = await getDb();
+  if (!db) {
+    try {
+      const raw = await fs.readFile(LEAD_FALLBACK_PATH, "utf8");
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed)
+        ? parsed.filter(entry => entry.type === "contact_submission")
+        : [];
+    } catch {
+      return [];
+    }
+  }
+
+  return db.select().from(contactSubmissions).orderBy(desc(contactSubmissions.createdAt));
 }
 
 // TODO: add feature queries here as your schema grows.

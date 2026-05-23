@@ -3,11 +3,13 @@ import { Card } from "@/components/ui/card";
 import { useState } from "react";
 import QuoteFormModal from "@/components/QuoteFormModal";
 import { Link } from "wouter";
+import LifeInsuranceCalculator from "@/components/LifeInsuranceCalculator";
 
 const services = [
   {
     title: "Term Life Insurance",
     description: "Affordable protection for a specific period, typically 10-30 years.",
+    note: "A smart choice when you want the most coverage for the lowest cost during the years your family depends on your income.",
     benefits: [
       "Lowest cost life insurance option",
       "Simple, straightforward coverage",
@@ -19,6 +21,7 @@ const services = [
   {
     title: "Final Expense Insurance",
     description: "Simplified underwriting to cover burial and funeral costs.",
+    note: "Helps families avoid out-of-pocket funeral costs and reduces stress during a difficult time.",
     benefits: [
       "Quick approval process",
       "Covers funeral, burial, and related expenses",
@@ -30,6 +33,7 @@ const services = [
   {
     title: "Indexed Universal Life (IUL)",
     description: "Potential growth linked to market index with downside protection.",
+    note: "Useful if you want permanent coverage plus a cash value strategy with flexible premiums.",
     benefits: [
       "Potential for higher returns",
       "Protected from market downturns",
@@ -41,6 +45,7 @@ const services = [
   {
     title: "Mortgage Protection",
     description: "Ensure your family keeps the home if something happens to you.",
+    note: "Consider this if your mortgage is one of your biggest monthly obligations and you want your family to stay in the home.",
     benefits: [
       "Covers outstanding mortgage balance",
       "Protects family home",
@@ -52,6 +57,7 @@ const services = [
   {
     title: "Business & Key Person Insurance",
     description: "Protect your business and partners with strategic coverage.",
+    note: "Important when a key owner or team member would create financial strain if they were no longer able to work.",
     benefits: [
       "Buy-sell agreement funding",
       "Key person protection",
@@ -63,6 +69,7 @@ const services = [
   {
     title: "Children's Financial Future Accounts",
     description: "Build wealth for your children with guaranteed growth.",
+    note: "A long-term option for families who want to start building protection and financial habits early.",
     benefits: [
       "Tax-free growth potential",
       "Guaranteed minimum returns",
@@ -97,6 +104,13 @@ export default function Services() {
                 <h3 className="text-2xl font-bold mb-3 text-slate-900">{service.title}</h3>
                 <p className="text-slate-600 mb-6">{service.description}</p>
 
+                <div className="bg-slate-50 p-4 rounded-lg mb-6 border border-slate-100">
+                  <p className="text-sm text-slate-700">
+                    <span className="font-semibold text-slate-900">Why consider it: </span>
+                    {service.note}
+                  </p>
+                </div>
+
                 <div className="mb-6">
                   <h4 className="font-semibold text-slate-900 mb-3">Key Benefits:</h4>
                   <ul className="space-y-2">
@@ -120,7 +134,7 @@ export default function Services() {
                   className="w-full bg-blue-600 hover:bg-blue-700"
                   onClick={() => setShowQuoteForm(true)}
                 >
-                  Get My Free Life Insurance Quote
+                  Check My Coverage Options
                 </Button>
               </Card>
             ))}
@@ -128,13 +142,16 @@ export default function Services() {
         </div>
       </section>
 
+      {/* Calculator Section */}
+      <LifeInsuranceCalculator />
+
       {/* Why Choose WEDOIT */}
       <section className="py-16 md:py-24 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Why Choose WEDOIT Insurance?</h2>
-            <p className="text-xl text-slate-600">
-              We're independent brokers committed to finding the best coverage for your unique situation.
+              <p className="text-xl text-slate-600">
+              We're independent brokers committed to finding the best coverage for families, professionals, and anyone supporting dependents.
             </p>
           </div>
 
@@ -162,7 +179,7 @@ export default function Services() {
               },
               {
                 title: "Ongoing Support",
-                description: "We're here to help with policy reviews, changes, and claims support.",
+                description: "We're here to help with coverage updates, beneficiary changes, and claims support.",
               },
             ].map((item, idx) => (
               <Card key={idx} className="p-6 border-0 shadow-sm">
@@ -177,17 +194,17 @@ export default function Services() {
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready to Find Your Coverage?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Get a free quote comparison from a licensed independent broker. No pressure. No obligation.
-          </p>
+            <h2 className="text-4xl font-bold mb-6">Ready to Find Your Coverage?</h2>
+            <p className="text-xl mb-8 max-w-2xl mx-auto">
+            Get a quote comparison from a licensed independent broker. No pressure. No obligation.
+            </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
               className="bg-white text-blue-600 hover:bg-slate-100 px-8 py-6 text-lg font-semibold"
               onClick={() => setShowQuoteForm(true)}
             >
-              Get My Free Life Insurance Quote
+              Check My Coverage Options
             </Button>
             <Button
               size="lg"
@@ -195,7 +212,7 @@ export default function Services() {
               className="border-white text-white hover:bg-white/10 px-8 py-6 text-lg font-semibold"
               asChild
             >
-              <Link href="/contact">Book a Free Policy Review</Link>
+              <Link href="/contact">Schedule a Call</Link>
             </Button>
           </div>
         </div>

@@ -1,0 +1,21 @@
+[
+  {
+    "type": "quote_request",
+    "name": "Smoke Test",
+    "phone": "(555) 123-4567",
+    "email": "smoke@example.com",
+    "state": "NM",
+    "coverageType": "Term Life",
+    "preferredContact": "email",
+    "createdAt": "2026-05-18T16:21:21.478Z"
+  },
+  {
+    "type": "contact_submission",
+    "name": "Smoke Test",
+    "phone": "(555) 123-4567",
+    "email": "smoke@example.com",
+    "subject": "Smoke test",
+    "message": "This is a smoke test message for go-live verification.",
+    "createdAt": "2026-05-18T16:21:21.486Z"
+  }
+]

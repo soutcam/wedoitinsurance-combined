@@ -17,7 +17,7 @@ export default function Resources() {
       </section>
 
       {/* Blog Section */}
-      <section className="py-16 md:py-24 bg-white">
+      <section id="blog" className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-4">
@@ -37,8 +37,8 @@ export default function Resources() {
                 date: "May 10, 2026",
               },
               {
-                title: "5 Life Events That Require a Policy Review",
-                excerpt: "Marriage, children, home purchase, promotion, and retirement. Here's why each requires a policy review.",
+                title: "5 Life Events That Require a Coverage Check",
+                excerpt: "Marriage, children, home purchase, promotion, and retirement. Here's why each deserves a fresh look at your coverage.",
                 date: "May 5, 2026",
               },
               {
@@ -67,7 +67,7 @@ export default function Resources() {
                 <p className="text-slate-600 mb-4 flex-1">{post.excerpt}</p>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-slate-500">{post.date}</span>
-                  <a href="#" className="text-blue-600 hover:text-blue-700 font-semibold">
+                  <a href="#blog" className="text-blue-600 hover:text-blue-700 font-semibold">
                     Read More →
                   </a>
                 </div>
@@ -77,14 +77,14 @@ export default function Resources() {
 
           <div className="text-center">
             <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
-              <a href="#">View All Articles</a>
+              <Link href="/blog">View All Articles</Link>
             </Button>
           </div>
         </div>
       </section>
 
       {/* Podcast Section */}
-      <section className="py-16 md:py-24 bg-slate-50">
+      <section id="podcast" className="py-16 md:py-24 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-4">
@@ -130,7 +130,7 @@ export default function Resources() {
                   </div>
                 </div>
                 <p className="text-slate-700 mb-4">{episode.description}</p>
-                <a href="#" className="text-blue-600 hover:text-blue-700 font-semibold">
+                <a href="#podcast" className="text-blue-600 hover:text-blue-700 font-semibold">
                   Listen Now →
                 </a>
               </Card>
@@ -139,14 +139,14 @@ export default function Resources() {
 
           <div className="text-center">
             <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
-              <a href="#">View All Episodes</a>
+              <Link href="/podcast">View All Episodes</Link>
             </Button>
           </div>
         </div>
       </section>
 
       {/* Videos Section */}
-      <section className="py-16 md:py-24 bg-white">
+      <section id="videos" className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-4">
@@ -206,7 +206,7 @@ export default function Resources() {
 
           <div className="text-center">
             <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
-              <a href="#">View All Videos</a>
+              <Link href="/videos">View All Videos</Link>
             </Button>
           </div>
         </div>
@@ -219,7 +219,7 @@ export default function Resources() {
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-4">Life Insurance Types — Quick Guide</h2>
               <p className="text-xl text-slate-600">
-                Different policies protect in different ways. Here’s a simple overview we use when helping clients compare options.
+                Different policies protect in different ways. Here’s a simple overview we use when helping families compare options.
               </p>
             </div>
 

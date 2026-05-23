@@ -1,11 +1,34 @@
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
-import { publicProcedure, router } from "./_core/trpc";
+import { adminProcedure, publicProcedure, router } from "./_core/trpc";
 import { z } from "zod";
-import { createQuoteRequest, createContactSubmission } from "./db";
+import {
+  createQuoteRequest,
+  createContactSubmission,
+  getQuoteRequests,
+  getContactSubmissions,
+} from "./db";
 import { notifyOwner } from "./_core/notification";
 import { analyzeLeadWithHermes } from "./_core/hermes";
+
+async function notifyOwnerWithFallback(
+  payload: Parameters<typeof notifyOwner>[0],
+  label: string
+): Promise<boolean> {
+  try {
+    const delivered = await notifyOwner(payload);
+
+    if (!delivered) {
+      console.warn(`[Leads] Owner notification delivery failed for ${label}.`);
+    }
+
+    return delivered;
+  } catch (error) {
+    console.error(`[Leads] Owner notification error for ${label}:`, error);
+    return false;
+  }
+}
 
 export const appRouter = router({
   // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -22,6 +45,39 @@ export const appRouter = router({
   }),
 
   leads: router({
+    listCRM: adminProcedure.query(async () => {
+      const [quotes, contacts] = await Promise.all([
+        getQuoteRequests(),
+        getContactSubmissions(),
+      ]);
+
+      const quoteItems = quotes.map((item: any) => ({
+        id: `quote_${item.id ?? item.createdAt ?? Date.now()}`,
+        type: "quote" as const,
+        name: item.name,
+        phone: item.phone,
+        email: item.email,
+        details: item.coverageType || item.message || "",
+        source: "quote form",
+        createdAt: item.createdAt,
+      }));
+
+      const contactItems = contacts.map((item: any) => ({
+        id: `contact_${item.id ?? item.createdAt ?? Date.now()}`,
+        type: "contact" as const,
+        name: item.name,
+        phone: item.phone,
+        email: item.email,
+        details: item.subject || item.message || "",
+        source: "contact form",
+        createdAt: item.createdAt,
+      }));
+
+      return [...quoteItems, ...contactItems].sort(
+        (a, b) => new Date(String(b.createdAt)).getTime() - new Date(String(a.createdAt)).getTime()
+      );
+    }),
+
     submitQuote: publicProcedure
       .input(
         z.object({
@@ -54,7 +110,7 @@ export const appRouter = router({
         });
 
         // Notify owner of new quote request
-        await notifyOwner({
+        await notifyOwnerWithFallback({
           title: "New Quote Request",
           content: [
             `Lead ID: ${lead_id}`,
@@ -71,7 +127,7 @@ export const appRouter = router({
           ]
             .filter(Boolean)
             .join("\n"),
-        });
+        }, `quote request ${lead_id}`);
 
         return { success: true };
       }),
@@ -106,7 +162,7 @@ export const appRouter = router({
         });
 
         // Notify owner of new contact submission
-        await notifyOwner({
+        await notifyOwnerWithFallback({
           title: "New Contact Form Submission",
           content: [
             `Lead ID: ${lead_id}`,
@@ -122,7 +178,7 @@ export const appRouter = router({
           ]
             .filter(Boolean)
             .join("\n"),
-        });
+        }, `contact submission ${lead_id}`);
 
         return { success: true };
       }),

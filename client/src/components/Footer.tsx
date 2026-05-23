@@ -41,6 +41,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/join-our-team">
+                  <a className="hover:text-white transition-colors">Join Our Team</a>
+                </Link>
+              </li>
+              <li>
                 <Link href="/contact">
                   <a className="hover:text-white transition-colors">Contact</a>
                 </Link>
@@ -72,17 +77,17 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Resources</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/resources">
+                <Link href="/blog">
                   <a className="hover:text-white transition-colors">Blog</a>
                 </Link>
               </li>
               <li>
-                <Link href="/resources">
+                <Link href="/podcast">
                   <a className="hover:text-white transition-colors">Podcast</a>
                 </Link>
               </li>
               <li>
-                <Link href="/resources">
+                <Link href="/videos">
                   <a className="hover:text-white transition-colors">Videos</a>
                 </Link>
               </li>
@@ -127,6 +132,9 @@ export default function Footer() {
             <div className="flex gap-6">
               <Link href="/privacy-policy">
                 <a className="hover:text-slate-300 transition-colors">Privacy Policy</a>
+              </Link>
+              <Link href="/contact">
+                <a className="hover:text-slate-300 transition-colors">Contact</a>
               </Link>
             </div>
           </div>

@@ -54,7 +54,7 @@ export default function Contact() {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-4">Contact Us</h1>
           <p className="text-xl text-slate-200 max-w-2xl mx-auto">
-            Speak with a licensed independent insurance advisor. We typically respond within one business day.
+            Speak with a licensed independent insurance advisor about coverage for your family, your income, or your future team members. We typically respond within one business day.
           </p>
         </div>
       </section>
@@ -111,7 +111,7 @@ export default function Contact() {
 
               <Button className="w-full bg-blue-600 hover:bg-blue-700 py-6" asChild>
                 <a href="https://calendly.com/wedoit2024/60min" target="_blank" rel="noopener noreferrer">
-                  Book a Free Policy Review
+                  Schedule a Call
                 </a>
               </Button>
             </div>
@@ -125,7 +125,7 @@ export default function Contact() {
                   <div className="flex flex-col items-center justify-center py-12 text-center">
                     <CheckCircle2 className="w-16 h-16 text-green-600 mb-4" />
                     <h3 className="text-xl font-semibold mb-2">Thank You!</h3>
-                    <p className="text-slate-600">
+                      <p className="text-slate-600">
                       Your message has been received. We'll contact you within one business day.
                     </p>
                   </div>

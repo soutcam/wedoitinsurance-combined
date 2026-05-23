@@ -57,8 +57,8 @@
 
 ### Final Delivery
 - [x] Full site testing
-- [ ] Performance optimization (address bundle size warning)
-- [ ] Accessibility review (keyboard nav, focus states, ARIA)
+- [x] Performance optimization (address bundle size warning)
+- [x] Accessibility review (keyboard nav, focus states, ARIA)
 - [x] Create checkpoint and prepare for publish
 
 
@@ -74,12 +74,12 @@
 ### CTA Consistency
 - [x] Verify all CTA buttons use exact required wording
 - [x] Ensure "Get My Free Life Insurance Quote" is primary CTA
-- [x] Ensure "Book a Free Policy Review" is secondary CTA
+- [x] Ensure "Schedule a Call" is secondary CTA
 
 ### Form Enhancements
-- [ ] Add embedded quote form directly on homepage (in addition to modal)
-- [ ] Handle notifyOwner failure cases with fallback
-- [ ] Add error logging for missed owner notifications
+- [x] Add embedded quote form directly on homepage (in addition to modal)
+- [x] Handle notifyOwner failure cases with fallback
+- [x] Add error logging for missed owner notifications
 
 ### Testing & Validation
 - [x] Form submission testing (quote and contact forms)
@@ -89,6 +89,6 @@
 
 ### CTA Wording Normalization
 - [x] Ensure all primary CTAs use: "Get My Free Life Insurance Quote"
-- [x] Ensure all secondary CTAs use: "Book a Free Policy Review"
-- [x] Update navigation "Book a Review" to "Book a Free Policy Review"
+- [x] Ensure all secondary CTAs use: "Schedule a Call"
+- [x] Update navigation CTA to "Schedule a Call"
 - [x] Update footer Terms of Service and Accessibility links (or remove placeholders)

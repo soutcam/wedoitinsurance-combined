@@ -8,14 +8,18 @@ export default function Navigation() {
   const [location] = useLocation();
 
   const isActive = (path: string) => location === path;
+  const resolveAnchorHref = (anchor: string) =>
+    location === "/" ? anchor : `/${anchor}`;
 
   const navItems = [
     { label: "Home", href: "/" },
-    { label: "HETHAVERSE", href: "/hethaverse" },
     // Home-page anchor scrolls
     { label: "About", href: "#about" },
     { label: "Services", href: "#services" },
     { label: "Resources", href: "#resources" },
+    { label: "Join Our Team", href: "/join-our-team" },
+    { label: "Agent Portal", href: "/agent-portal" },
+    { label: "Social Accounts", href: "/social-accounts" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -40,7 +44,7 @@ export default function Navigation() {
                 return (
                   <a
                     key={item.href}
-                    href={item.href}
+                    href={resolveAnchorHref(item.href)}
                     className={`font-medium transition-colors ${
                       active ? "text-blue-600" : "text-slate-700 hover:text-blue-600"
                     }`}
@@ -70,7 +74,7 @@ export default function Navigation() {
           <div className="hidden md:block">
             <Button className="bg-blue-600 hover:bg-blue-700">
               <a href="https://calendly.com/wedoit2024/60min" target="_blank" rel="noopener noreferrer">
-                Book a Free Policy Review
+                Schedule a Call
               </a>
             </Button>
           </div>
@@ -105,7 +109,7 @@ export default function Navigation() {
                   return (
                     <a
                       key={item.href}
-                      href={item.href}
+                      href={resolveAnchorHref(item.href)}
                       className={className}
                       onClick={() => setIsOpen(false)}
                     >
@@ -127,7 +131,7 @@ export default function Navigation() {
               })}
               <Button className="w-full bg-blue-600 hover:bg-blue-700 mt-2" asChild>
                 <a href="https://calendly.com/wedoit2024/60min" target="_blank" rel="noopener noreferrer">
-                  Book a Free Policy Review
+                  Schedule a Call
                 </a>
               </Button>
             </div>
