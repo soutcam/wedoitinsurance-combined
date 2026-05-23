@@ -1,7 +1,7 @@
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
-import { adminProcedure, publicProcedure, router } from "./_core/trpc";
+import { adminProcedure, protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import { z } from "zod";
 import {
   createQuoteRequest,
@@ -75,6 +75,41 @@ export const appRouter = router({
 
       return [...quoteItems, ...contactItems].sort(
         (a, b) => new Date(String(b.createdAt)).getTime() - new Date(String(a.createdAt)).getTime()
+      );
+    }),
+
+    pendingAppointments: protectedProcedure.query(async () => {
+      const [quotes, contacts] = await Promise.all([
+        getQuoteRequests(),
+        getContactSubmissions(),
+      ]);
+
+      const quoteItems = quotes.map((item: any) => ({
+        id: `appt_quote_${item.id ?? item.createdAt ?? Date.now()}`,
+        type: "quote" as const,
+        clientName: item.name,
+        phone: item.phone,
+        email: item.email,
+        status: "Pending" as const,
+        source: "Quote request",
+        notes: item.coverageType || item.message || "Needs follow-up",
+        requestedAt: item.createdAt,
+      }));
+
+      const contactItems = contacts.map((item: any) => ({
+        id: `appt_contact_${item.id ?? item.createdAt ?? Date.now()}`,
+        type: "contact" as const,
+        clientName: item.name,
+        phone: item.phone,
+        email: item.email,
+        status: "Pending" as const,
+        source: "Contact request",
+        notes: item.subject || item.message || "Needs follow-up",
+        requestedAt: item.createdAt,
+      }));
+
+      return [...quoteItems, ...contactItems].sort(
+        (a, b) => new Date(String(b.requestedAt)).getTime() - new Date(String(a.requestedAt)).getTime()
       );
     }),
 
