@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Award, Shield, Users, Zap, PhoneCall, HeartHandshake, BadgeCheck, Briefcase } from "lucide-react";
+import { Award, Shield, Users, HeartHandshake, BadgeCheck, Briefcase, MapPin, PhoneCall, Star } from "lucide-react";
 
 const principles = [
   {
@@ -35,18 +35,60 @@ const services = [
   "Agent training and support",
 ];
 
+const whyStarted = [
+  "People deserve straightforward coverage guidance.",
+  "Families need a process that feels human, not pushy.",
+  "Agents need better training and back-office support.",
+];
+
 export default function About() {
   return (
     <div className="min-h-screen flex flex-col">
       <section className="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-blue-300 font-semibold tracking-wide uppercase mb-4">About WEDOIT Insurance</p>
-            <h1 className="text-5xl font-bold mb-6 leading-tight">Built to help families, not confuse them.</h1>
-            <p className="text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed">
-              WEDOIT Insurance is an independent life insurance brokerage focused on helping families, working professionals,
-              and future agents get clear guidance, straightforward options, and a no-pressure experience.
-            </p>
+          <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-10 items-center">
+            <div className="text-center lg:text-left">
+              <p className="text-blue-300 font-semibold tracking-wide uppercase mb-4">About WEDOIT Insurance</p>
+              <h1 className="text-5xl font-bold mb-6 leading-tight">Built to help families, not confuse them.</h1>
+              <p className="text-xl text-slate-200 max-w-3xl mx-auto lg:mx-0 leading-relaxed">
+                WEDOIT Insurance is an independent life insurance brokerage focused on helping families, working professionals,
+                and future agents get clear guidance, straightforward options, and a no-pressure experience.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3 justify-center lg:justify-start text-sm text-slate-200">
+                <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2"><MapPin className="w-4 h-4" /> Serving all 50 states</span>
+                <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2"><PhoneCall className="w-4 h-4" /> (575) 266-3119</span>
+              </div>
+            </div>
+
+            <Card className="overflow-hidden border-0 shadow-2xl bg-white/10 text-white backdrop-blur">
+              <div className="aspect-[4/3] bg-gradient-to-br from-blue-500/40 via-slate-900 to-slate-950 flex items-center justify-center border-b border-white/10">
+                <div className="text-center px-6">
+                  <div className="mx-auto mb-4 h-28 w-28 rounded-full bg-white/15 border border-white/20 flex items-center justify-center text-3xl font-bold tracking-widest">
+                    J
+                  </div>
+                  <p className="text-sm uppercase tracking-[0.3em] text-blue-200">Founder photo slot</p>
+                  <p className="mt-2 text-sm text-slate-200 max-w-sm mx-auto">
+                    Drop your headshot here and I’ll wire it in. For now, this marks the spot for your real photo.
+                  </p>
+                </div>
+              </div>
+              <div className="p-6 space-y-4">
+                <div>
+                  <p className="text-sm uppercase tracking-wide text-blue-200 mb-2">Founder</p>
+                  <h2 className="text-2xl font-bold">Joel — building WEDOIT around real conversations</h2>
+                </div>
+                <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div className="rounded-xl bg-white/10 p-3">
+                    <p className="text-slate-300">Focus</p>
+                    <p className="font-semibold">Families + agents</p>
+                  </div>
+                  <div className="rounded-xl bg-white/10 p-3">
+                    <p className="text-slate-300">Style</p>
+                    <p className="font-semibold">Clear, honest, no-pressure</p>
+                  </div>
+                </div>
+              </div>
+            </Card>
           </div>
         </div>
       </section>
@@ -56,7 +98,7 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start max-w-6xl mx-auto">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wide text-blue-600 mb-3">Founder story</p>
-              <h2 className="text-4xl font-bold mb-6">I’m Joel, and I built this around real conversations.</h2>
+              <h2 className="text-4xl font-bold mb-6">Why I started WEDOIT Insurance</h2>
               <div className="space-y-5 text-lg text-slate-700 leading-relaxed">
                 <p>
                   WEDOIT Insurance grew out of a simple idea: people should not have to fight through confusing sales talk just to protect their family.
@@ -128,7 +170,20 @@ export default function About() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-slate-900 text-white">
+      <section className="py-16 md:py-20 bg-slate-900 text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
+            {whyStarted.map((item) => (
+              <Card key={item} className="p-6 border-0 bg-white/5 backdrop-blur text-white shadow-none">
+                <h3 className="text-xl font-semibold mb-2">Why this matters</h3>
+                <p className="text-slate-200">{item}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-slate-900 text-white border-t border-white/10">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold mb-6">Need help figuring out the next step?</h2>
