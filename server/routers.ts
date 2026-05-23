@@ -11,6 +11,7 @@ import {
 } from "./db";
 import { notifyOwner } from "./_core/notification";
 import { analyzeLeadWithHermes } from "./_core/hermes";
+import { invokeLLM } from "./_core/llm";
 
 async function notifyOwnerWithFallback(
   payload: Parameters<typeof notifyOwner>[0],
@@ -44,12 +45,83 @@ export const appRouter = router({
     }),
   }),
 
+  ai: router({
+    chat: publicProcedure
+      .input(
+        z.object({
+          messages: z
+            .array(
+              z.object({
+                role: z.enum(["system", "user", "assistant"]),
+                content: z.string().min(1),
+              })
+            )
+            .min(1),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const conversation = input.messages.slice(-12);
+        const systemPrompt = `You are the WEDOIT Insurance website assistant.
+
+Help visitors with life insurance basics, scheduling, agent onboarding, and website navigation.
+Be concise, warm, and practical.
+If the user asks for a quote or wants to talk to a person, encourage them to use the contact or schedule options.
+Do not claim to be a licensed agent. Do not give legal, tax, or medical advice.
+If you are unsure, say so briefly and suggest a human follow-up.`;
+
+        try {
+          const result = await invokeLLM({
+            messages: [
+              { role: "system", content: systemPrompt },
+              ...conversation.map(message => ({
+                role: message.role,
+                content: message.content,
+              })),
+            ],
+            maxTokens: 700,
+            responseFormat: { type: "text" },
+          });
+
+          const rawContent = result.choices?.[0]?.message?.content;
+          const reply = Array.isArray(rawContent)
+            ? rawContent
+                .map(part => (typeof part === "string" ? part : part.type === "text" ? part.text : ""))
+                .join("")
+                .trim()
+            : String(rawContent ?? "").trim();
+
+          return {
+            reply:
+              reply ||
+              "I’m here to help with coverage questions, booking, or getting to the right page. What would you like to do next?",
+          } as const;
+        } catch (error) {
+          console.error("[AI chat]", error);
+          return {
+            reply:
+              "I’m here to help with coverage questions, booking, or getting to the right page. What would you like to do next?",
+          } as const;
+        }
+      }),
+  }),
+
   leads: router({
     listCRM: adminProcedure.query(async () => {
       const [quotes, contacts] = await Promise.all([
         getQuoteRequests(),
         getContactSubmissions(),
       ]);
+
+      const inferStage = (details: string, type: "quote" | "contact") => {
+        const text = details.toLowerCase();
+        if (/booked|scheduled|appointment|meeting|confirmed/.test(text)) {
+          return { stage: "Booked", stageReason: "Meeting is already scheduled or confirmed." };
+        }
+        if (type === "quote") {
+          return { stage: "Potential", stageReason: "Interested lead with quote intent." };
+        }
+        return { stage: "Needs More Time", stageReason: "Needs nurturing before booking." };
+      };
 
       const quoteItems = quotes.map((item: any) => ({
         id: `quote_${item.id ?? item.createdAt ?? Date.now()}`,
@@ -60,6 +132,7 @@ export const appRouter = router({
         details: item.coverageType || item.message || "",
         source: "quote form",
         createdAt: item.createdAt,
+        ...inferStage(item.coverageType || item.message || "", "quote"),
       }));
 
       const contactItems = contacts.map((item: any) => ({
@@ -71,6 +144,7 @@ export const appRouter = router({
         details: item.subject || item.message || "",
         source: "contact form",
         createdAt: item.createdAt,
+        ...inferStage(item.subject || item.message || "", "contact"),
       }));
 
       return [...quoteItems, ...contactItems].sort(

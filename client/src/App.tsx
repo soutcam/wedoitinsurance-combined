@@ -7,6 +7,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
+import SiteChatWidget from "./components/SiteChatWidget";
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -71,6 +72,7 @@ function App() {
               <Router />
             </main>
             <Footer />
+            <SiteChatWidget />
           </div>
         </TooltipProvider>
       </ThemeProvider>
