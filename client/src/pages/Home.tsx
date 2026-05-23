@@ -1,6 +1,6 @@
 import { lazy, Suspense, useState } from "react";
 import { Link } from "wouter";
-import { Award, BadgeCheck, Briefcase, Facebook, HeartHandshake, Instagram, Linkedin, Shield, Stethoscope, Truck, Users, UserRound, Youtube, X, LogIn } from "lucide-react";
+import { Award, BadgeCheck, Briefcase, Facebook, HeartHandshake, Instagram, Linkedin, Phone, Shield, ShieldCheck, Stethoscope, Truck, Users, UserRound, Youtube, X, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import RevealOnScroll from "@/components/RevealOnScroll";
@@ -86,6 +86,20 @@ export default function Home() {
               </Button>
             </div>
 
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-slate-300 mb-10">
+              <a href="tel:+15752663119" className="inline-flex items-center gap-2 hover:text-white transition-colors">
+                <Phone className="w-4 h-4" />
+                (575) 266-3119
+              </a>
+              <span className="hidden sm:inline text-slate-500">•</span>
+              <span className="inline-flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-blue-400" />
+                Independent broker, not an insurance company
+              </span>
+              <span className="hidden sm:inline text-slate-500">•</span>
+              <span>Serving families across all 50 states</span>
+            </div>
+
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 border-t border-slate-700">
               {[
                 { icon: Shield, label: "Independent Broker" },
@@ -99,6 +113,23 @@ export default function Home() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 bg-slate-900 text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
+            {[
+              { title: "Licensed guidance", text: "Talk with an advisor who explains coverage clearly." },
+              { title: "No-pressure process", text: "Compare options at your pace and choose what fits." },
+              { title: "Fast contact options", text: "Call, email, schedule, or use the quote form anytime." },
+            ].map((item) => (
+              <Card key={item.title} className="p-6 border-0 bg-white/5 backdrop-blur text-white shadow-none">
+                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                <p className="text-slate-200">{item.text}</p>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
