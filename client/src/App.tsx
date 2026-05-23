@@ -20,7 +20,7 @@ const Videos = lazy(() => import("./pages/videos"));
 const JoinOurTeam = lazy(() => import("./pages/joinourteam"));
 const CRM = lazy(() => import("./pages/CRM"));
 const AgentPortal = lazy(() => import("./pages/AgentPortal"));
-const SocialAccounts = lazy(() => import("./pages/SocialAccounts"));
+const SocialAccounts = lazy(() => import("./pages/socialaccounts"));
 
 function Router() {
   return (
