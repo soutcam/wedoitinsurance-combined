@@ -1,6 +1,6 @@
 import { lazy, Suspense, useState } from "react";
 import { Link } from "wouter";
-import { Award, BadgeCheck, Briefcase, Facebook, HeartHandshake, Instagram, Linkedin, Shield, Truck, Users, UserRound, Youtube, X, LogIn } from "lucide-react";
+import { Award, BadgeCheck, Briefcase, Facebook, HeartHandshake, Instagram, Linkedin, Shield, Stethoscope, Truck, Users, UserRound, Youtube, X, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import RevealOnScroll from "@/components/RevealOnScroll";
