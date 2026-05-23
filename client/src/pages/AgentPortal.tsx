@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import { useLocation } from "wouter";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -40,8 +39,10 @@ function formatDate(value: string | Date | null | undefined) {
 
 export default function AgentPortal() {
   const { user, loading } = useAuth();
-  const [location] = useLocation();
-  const demoMode = useMemo(() => new URLSearchParams(location.split("?")[1] ?? "").get("demo") === "1", [location]);
+  const demoMode = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    return new URLSearchParams(window.location.search).get("demo") === "1";
+  }, []);
   const appointmentQuery = trpc.leads.pendingAppointments.useQuery(undefined, {
     retry: false,
     enabled: Boolean(user),
