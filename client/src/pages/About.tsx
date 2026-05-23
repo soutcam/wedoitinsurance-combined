@@ -1,170 +1,149 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Award, Shield, Users, Zap } from "lucide-react";
+import { Award, Shield, Users, Zap, PhoneCall, HeartHandshake, BadgeCheck, Briefcase } from "lucide-react";
+
+const principles = [
+  {
+    icon: Shield,
+    title: "Independent guidance",
+    text: "We compare options across carriers so you can make a decision with context, not pressure.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Family first",
+    text: "Every recommendation starts with the people depending on you, your budget, and your goals.",
+  },
+  {
+    icon: BadgeCheck,
+    title: "Clear explanations",
+    text: "We keep the jargon out of it and explain coverage in plain English.",
+  },
+  {
+    icon: Briefcase,
+    title: "Built for growth",
+    text: "We also train new agents who want to build a real business helping people protect what matters.",
+  },
+];
+
+const services = [
+  "Term life insurance",
+  "Final expense planning",
+  "Living benefits",
+  "Mortgage protection",
+  "Tax-advantaged strategies",
+  "Agent training and support",
+];
 
 export default function About() {
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Hero Section */}
       <section className="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-16 md:py-24">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-4">About WEDOIT Insurance</h1>
-          <p className="text-xl text-slate-200 max-w-2xl mx-auto">
-            Helping middle class families, millennials, nurses, doctors, transporters, and future agents protect what matters most.
-          </p>
-        </div>
-      </section>
-
-      {/* Founder Story */}
-      <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold mb-8">Our Story</h2>
-            <div className="space-y-6 text-lg text-slate-700 leading-relaxed">
-              <p>
-                WEDOIT Insurance was founded on a simple belief: families deserve clear, honest guidance when it comes to protecting their financial future. Too often, people feel confused or pressured when shopping for life insurance. We wanted to change that by making the process simple and human.
-              </p>
-              <p>
-                With over 15 years of combined experience in life insurance and financial planning, our team helps people find coverage that fits real lives and real budgets. We work as independent brokers, which means we're not tied to any single insurance company. We work for you.
-              </p>
-              <p>
-                Our mission is simple: educate first, then help you choose coverage with confidence. No pressure. No hidden agendas. Just honest, expert guidance for families and the people who support them.
-              </p>
-            </div>
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-blue-300 font-semibold tracking-wide uppercase mb-4">About WEDOIT Insurance</p>
+            <h1 className="text-5xl font-bold mb-6 leading-tight">Built to help families, not confuse them.</h1>
+            <p className="text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed">
+              WEDOIT Insurance is an independent life insurance brokerage focused on helping families, working professionals,
+              and future agents get clear guidance, straightforward options, and a no-pressure experience.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Credentials & Licensing */}
-      <section className="py-16 md:py-24 bg-slate-50">
+      <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold mb-12 text-center">Credentials & Licensing</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              <Card className="p-8 border-0 shadow-sm">
-                <h3 className="text-2xl font-bold mb-4 text-blue-600">Licensed Advisors</h3>
-                <p className="text-slate-700 mb-4">
-                  Our team members are licensed life insurance agents with current, active licenses in all 50 states.
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start max-w-6xl mx-auto">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wide text-blue-600 mb-3">Founder story</p>
+              <h2 className="text-4xl font-bold mb-6">I’m Joel, and I built this around real conversations.</h2>
+              <div className="space-y-5 text-lg text-slate-700 leading-relaxed">
+                <p>
+                  WEDOIT Insurance grew out of a simple idea: people should not have to fight through confusing sales talk just to protect their family.
+                  If someone needs life insurance, mortgage protection, final expense coverage, or a plan that gives them living benefits, they deserve a clear answer.
                 </p>
-                <ul className="space-y-2 text-slate-600">
-                  <li>✓ Life Insurance License</li>
-                  <li>✓ Continuing Education Current</li>
-                  <li>✓ Background Verified</li>
-                  <li>✓ Compliant with State Regulations</li>
-                </ul>
-              </Card>
-
-              <Card className="p-8 border-0 shadow-sm">
-                <h3 className="text-2xl font-bold mb-4 text-blue-600">Independent Broker</h3>
-                <p className="text-slate-700 mb-4">
-                  WEDOIT Insurance LLC is an independent insurance broker, not an insurance company.
+                <p>
+                  I wanted a business that felt honest, useful, and easy to understand. So WEDOIT was built to compare options, explain them clearly,
+                  and help people choose coverage that actually fits their life and budget.
                 </p>
-                <ul className="space-y-2 text-slate-600">
-                  <li>✓ Multi-Carrier Access</li>
-                  <li>✓ No Carrier Affiliation</li>
-                  <li>✓ Client-First Approach</li>
-                  <li>✓ Transparent Pricing</li>
-                </ul>
-              </Card>
+                <p>
+                  We also support the next generation of agents with training, scripts, and back-office tools so they can learn the business and serve people well.
+                </p>
+              </div>
             </div>
 
-            {/* Important Disclosures */}
-            <Card className="p-8 border-0 shadow-sm bg-blue-50">
-              <h3 className="text-xl font-bold mb-4">Important Disclosures</h3>
-              <div className="space-y-4 text-slate-700">
-                <p>
-                  <span className="font-semibold">Company:</span> WEDOIT Insurance LLC is an independent insurance broker.
-                </p>
-                <p>
-                  <span className="font-semibold">Service Area:</span> We serve clients in all 50 states. Product availability varies by state and carrier.
-                </p>
-                <p>
-                  <span className="font-semibold">Underwriting:</span> All applications are subject to underwriting approval by the insurance carrier.
-                </p>
-                <p>
-                  <span className="font-semibold">Licensing:</span> Our advisors are licensed to sell life insurance in all 50 states. License information is available upon request.
-                </p>
-                <p>
-                  <span className="font-semibold">Audience:</span> We focus on families, working professionals, and people carrying responsibility for others.
-                </p>
+            <Card className="p-8 border-0 shadow-sm bg-slate-50">
+              <h3 className="text-2xl font-bold mb-4">What we do</h3>
+              <p className="text-slate-700 mb-6">
+                We help clients find protection that works for real life — whether that means term coverage, final expense planning,
+                mortgage protection, or a more strategic approach for long-term family security.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {services.map((item) => (
+                  <div key={item} className="rounded-lg bg-white p-4 border border-slate-200 text-slate-700 font-medium">
+                    {item}
+                  </div>
+                ))}
               </div>
             </Card>
           </div>
         </div>
       </section>
 
-      {/* Trust Signals */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-16 md:py-24 bg-slate-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center">Why Families Trust Us</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: Shield,
-                title: "Independent Broker",
-                description: "We work for you, not for any insurance company.",
-              },
-              {
-                icon: Zap,
-                title: "Multi-Carrier Access",
-                description: "We compare options from dozens of carriers.",
-              },
-              {
-                icon: Award,
-                title: "Licensed Advisors",
-                description: "15+ years of combined experience and expertise.",
-              },
-              {
-                icon: Users,
-                title: "No-Pressure Education",
-                description: "We explain options clearly so you decide.",
-              },
-            ].map((item, idx) => (
-              <Card key={idx} className="p-6 border-0 shadow-sm text-center">
-                <item.icon className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-                <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-                <p className="text-slate-600">{item.description}</p>
-              </Card>
-            ))}
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <p className="text-sm font-semibold uppercase tracking-wide text-blue-600 mb-3">How we work</p>
+              <h2 className="text-4xl font-bold">The way we do business</h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+              {principles.map((item) => (
+                <Card key={item.title} className="p-6 border-0 shadow-sm bg-white">
+                  <item.icon className="w-11 h-11 text-blue-600 mb-4" />
+                  <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                  <p className="text-slate-600">{item.text}</p>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Statistics */}
-      <section className="py-16 md:py-24 bg-slate-50">
+      <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             {[
-              { stat: "500+", label: "Families Supported" },
-              { stat: "$50M+", label: "Coverage Provided" },
-              { stat: "98%", label: "Client Satisfaction" },
-            ].map((item, idx) => (
-              <div key={idx}>
-                <div className="text-5xl font-bold text-blue-600 mb-2">{item.stat}</div>
-                <p className="text-lg text-slate-600">{item.label}</p>
+              { stat: "Independent", label: "Broker, not an insurance company" },
+              { stat: "50 states", label: "Service area across the U.S." },
+              { stat: "No pressure", label: "Education first, decision second" },
+            ].map((item) => (
+              <div key={item.label} className="rounded-2xl bg-slate-50 p-8">
+                <div className="text-4xl font-bold text-blue-600 mb-2">{item.stat}</div>
+                <p className="text-slate-600">{item.label}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">Let's Protect Your Family</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Schedule a conversation with one of our licensed advisors and get clear next steps.
-          </p>
-          <Button
-            size="lg"
-            className="bg-white text-blue-600 hover:bg-slate-100 px-8 py-6 text-lg font-semibold"
-            asChild
-          >
-            <Link href="/contact">Schedule a Call</Link>
-          </Button>
+      <section className="py-16 md:py-24 bg-slate-900 text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl font-bold mb-6">Need help figuring out the next step?</h2>
+            <p className="text-xl text-slate-200 mb-8">
+              Call, book a conversation, or send a message — we’ll help you sort through the options.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" className="bg-white text-slate-900 hover:bg-slate-100">
+                <a href="tel:+15752663119">Call (575) 266-3119</a>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                <Link href="/contact">Contact WEDOIT Insurance</Link>
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
     </div>
