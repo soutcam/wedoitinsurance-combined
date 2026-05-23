@@ -61,14 +61,17 @@ export default function About() {
             </div>
 
             <Card className="overflow-hidden border-0 shadow-2xl bg-white/10 text-white backdrop-blur">
-              <div className="aspect-[4/3] bg-gradient-to-br from-blue-500/40 via-slate-900 to-slate-950 flex items-center justify-center border-b border-white/10">
-                <div className="text-center px-6">
-                  <div className="mx-auto mb-4 h-28 w-28 rounded-full bg-white/15 border border-white/20 flex items-center justify-center text-3xl font-bold tracking-widest">
-                    J
-                  </div>
-                  <p className="text-sm uppercase tracking-[0.3em] text-blue-200">Founder photo slot</p>
-                  <p className="mt-2 text-sm text-slate-200 max-w-sm mx-auto">
-                    Drop your headshot here and I’ll wire it in. For now, this marks the spot for your real photo.
+              <div className="relative aspect-[4/3] overflow-hidden border-b border-white/10">
+                <img
+                  src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1200&q=80"
+                  alt="Family planning insurance together"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 rounded-2xl bg-white/10 p-4 backdrop-blur border border-white/15">
+                  <p className="text-sm uppercase tracking-[0.3em] text-blue-200">Families first</p>
+                  <p className="mt-1 text-sm text-slate-100 max-w-md">
+                    Generic photo used until your own founder image is ready.
                   </p>
                 </div>
               </div>
@@ -85,6 +88,17 @@ export default function About() {
                   <div className="rounded-xl bg-white/10 p-3">
                     <p className="text-slate-300">Style</p>
                     <p className="font-semibold">Clear, honest, no-pressure</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-[1fr_1fr] gap-3">
+                  <img
+                    src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80"
+                    alt="Business meeting and handshake"
+                    className="h-28 w-full rounded-xl object-cover border border-white/10"
+                  />
+                  <div className="rounded-xl bg-white/10 p-4 flex flex-col justify-center border border-white/10">
+                    <p className="text-xs uppercase tracking-[0.3em] text-blue-200">Trust</p>
+                    <p className="mt-2 text-sm text-slate-100">Warm, human, and built for real families.</p>
                   </div>
                 </div>
               </div>
